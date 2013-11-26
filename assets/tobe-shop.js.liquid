@@ -1,0 +1,33 @@
+$(document).ready(function() {
+  $('li.nav-item.has-dropdown').click(function(e) {
+    // Fall through to normal behavior if we click a child
+    if ($(e.target).parent('.sub-nav-item').length > 0) {
+      return true;
+    }
+
+    e.preventDefault();
+
+    var me = this;
+    $('li.nav-item.has-dropdown').each(function () {
+      if (me != this) {
+        $(this).find('ul').hide();
+      }
+    });
+
+    $(this).find('ul').toggle();
+  });
+
+  $('#product-photo-thumbs').on('click', 'a.gallery', function(e) {
+    e.preventDefault();
+    var $clicked = $(this);
+    var newSrc = $clicked.attr('href');
+    var $big = $('#product-photo-container>a').clone();
+
+    // Add mini pic to main
+    $('#product-photo-container>a').replaceWith($clicked);
+    $('#product-photo-container>a img').attr('src', newSrc);
+
+    // Replace mini pic with main
+    $('#product-photo-thumbs').append($big);
+  });
+});

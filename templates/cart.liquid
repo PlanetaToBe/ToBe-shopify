@@ -1,5 +1,3 @@
-<h1>Shopping Cart</h1>
-  
 {% if cart.item_count > 0 %}
 
 <form action="/cart" method="post">
@@ -8,11 +6,11 @@
     
     <thead>
       <tr>
-        <th>Item</th>
+        <th><!-- Item --></th>
         <th>&nbsp;</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Total</th>
+        <th><!-- Price --></th>
+        <th><!-- Quantity --></th>
+        <th><!-- Total --></th>
         <th>&nbsp;</th>
       </tr>
     </thead>
@@ -30,23 +28,13 @@
         {% if collection_url == '/collections/frontpage' or collection_url == '' %}{% assign collection_url = '/collections/all' %}{% endif %}
       {% endif %}
 
-      <tr>
+      <tr class="{% for collection in item.product.collections %} {{collection.handle}} {% endfor %}">
         <td>
           <a href="{{ item.product.url | within: collections.all }}">  
             <img src="{{ item.product.featured_image.src | product_img_url: 'compact' }}" alt="{{ item.title | escape }}" />
           </a>
         </td>
         <td>
-          <h2>
-            <a href="{{ item.product.url | within: collections.all }}">
-            {{ item.title }}
-            {% if item.product.variants.size == 1 %}
-              {% unless item.variant.title contains 'Default' %}
-               - {{ item.variant.title }}
-              {% endunless %}
-            {% endif %}
-            </a>
-          </h2>
           {% comment %}
           Line Item Properties
           {% endcomment %}
@@ -65,15 +53,16 @@
             {% endfor %}
           </p>
           {% endif %}
-          <h3>{{ item.vendor }}</h3>
         </td>
-        <td>{{ item.price | money }}</td>
+        <td class="product-price">{{ item.price | money }}</td>
         <td>
           <input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" />
         </td>
-        <td>{{ item.line_price | money }}</td>
+        <td>&nbsp;</td>
         <td>
-          <a href="/cart/change?line={{ forloop.index }}&quantity=0">Remove</a>
+          <a class="icon close" href="/cart/change?line={{ forloop.index }}&quantity=0">
+            <span></span>
+          </a>
         </td>
       </tr>
     {% endfor %}
@@ -88,11 +77,9 @@
   {% endcomment %}
   
   <div>
-    <h3>Subtotal <em>{{ cart.total_price | money }}</em></h3>
-    <a href="{{ collection_url }}">Continue shopping</a>
-    <span class="or">or</span>
+    <h3>Subtotal: <strong>{{ cart.total_price | money }}</strong></h3>
     <input type="submit" name="update" value="Update cart" />
-    <span class="or">or</span>
+    <span class="or">&nbsp;</span>
     <input type="submit" name="checkout" value="Check out" />    
     {% comment %}Paypal and Google checkout buttons{% endcomment %}
     {% if additional_checkout_buttons %}
@@ -102,22 +89,13 @@
     {% endif %}    
   </div>
   
-  {% comment %}
-  For the special instructions to be submitted with order,
-  they need to use a name attribute set to 'note'. That's case-sensitive.
-  {% endcomment %}
-  <div>
-    <p>Special instructions for seller</p>
-    <textarea name="note">{{ cart.note }}</textarea>
-  </div>
-
 </form>
 
 {% else %}
 
 <div>
-  <h2>It appears that your cart is currently empty!</h2>
-  <h3>You can continue browsing <a href="/collections/all">here</a>.</h3>
+  <h2>Your cart is empty.</h2>
+  <h3><a href="/">Click here to continue shopping.</a></h3>
 </div>
 
 {% endif %}

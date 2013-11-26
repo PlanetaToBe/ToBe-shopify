@@ -3,11 +3,42 @@
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}" />
   <meta itemprop="image" content="{{ product.featured_image.src | product_img_url: 'grande' }}" />
   
+  <div id="product-photos">
+  
+  {% if product.images.size == 0 %}
+  
+    <div id="product-photo-container">
+      <img src="{{ '' | product_img_url: 'grande' }}" alt="" />
+    </div>
+    
+  {% else %}
+    
+    <div id="product-photo-container" class="{% for collection in product.collections %} {{collection.handle}} {% endfor %}">
+      <a class="gallery" href="{{ product.featured_image.src | product_img_url: 'original' }}" rel="gallery">
+        <img src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}" />
+      </a>
+    </div>
+
+    {% if product.images.size > 1 %}
+    <ul id="product-photo-thumbs" class="clearfix grid">
+      {% for image in product.images offset:1 %}
+      <li class="product-photo-thumb">
+        <a class="gallery" href="{{ image.src | product_img_url: 'original' }}" rel="gallery">
+          <img src="{{ image.src | product_img_url: 'compact' }}" alt="{{ image.alt | escape }}" />
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    
+  {% endif %}
+
+  </div><!-- #product-photos -->
+
   <form action="/cart/add" method="post" enctype="multipart/form-data">
     
     <div id="product-details">
       
-      <h1 itemprop="name">{{ product.title }}</h1>
       {% assign product_vendor_handle = product.vendor | handle %}
       {% comment %}
       Do we have a collection that has the same name as our product vendor name?
@@ -19,11 +50,6 @@
       {% else %}
         {% assign vendor_url = product.vendor | url_for_vendor %}
       {% endif %}
-      <h2 itemprop="brand">{{ product.vendor | link_to: vendor_url }}</h2>
-      
-      <div id="product-description" class="rte" itemprop="description">
-        {{ product.description }}
-      </div>
       
       <div id="product-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
         <meta itemprop="priceCurrency" content="{{ shop.currency }}" />
@@ -34,7 +60,8 @@
         {% endif %}
         <p>
           {% if product.compare_at_price > product.price %}
-          <span class="product-price on-sale" itemprop="price">{{ product.price | money }}</span>&nbsp;<s class="product-compare-price">{{ product.compare_at_price_max | money }}</s>
+          <span class="product-price on-sale" itemprop="price">{{ product.price | money }}</span>&nbsp;
+            <s class="product-compare-price">{{ product.compare_at_price_max | money }}</s>
           {% else %}
           <span class="product-price" itemprop="price">{{ product.price | money }}</span>
           {% endif %}
@@ -61,57 +88,11 @@
       <div id="product-add">
         <input type="submit" name="add" id="add" value="Add to cart">
       </div>
-      
-      {% if collection %}
-        {% if collection.previous_product or collection.next_product %}
-        <div>     
-        {% if collection.previous_product %}
-          {% capture prev_url %}{{ collection.previous_product}}#content{% endcapture %}
-          <span class="left">{{ '&larr; Previous Product' | link_to: prev_url }}</span>
-        {% endif %}
-        {% if collection.next_product %}
-          {% capture next_url %}{{ collection.next_product}}#content{% endcapture %}
-          <span class="right">{{ 'Next Product &rarr;' | link_to: next_url }}</span>
-        {% endif %}
-        </div>
-        {% endif %}
-      {% endif %}
-      
+
     </div><!-- #product-details -->
 
   </form>
   
-  <div id="product-photos">
-  
-  {% if product.images.size == 0 %}
-  
-    <div id="product-photo-container">
-      <img src="{{ '' | product_img_url: 'grande' }}" alt="" />
-    </div>
-    
-  {% else %}
-    
-    <div id="product-photo-container">
-      <a class="gallery" href="{{ product.featured_image.src | product_img_url: 'original' }}" rel="gallery">
-        <img src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}" />
-      </a>
-    </div>
-
-    {% if product.images.size > 1 %}
-    <ul id="product-photo-thumbs" class="clearfix grid">
-      {% for image in product.images offset:1 %}
-      <li class="product-photo-thumb">
-        <a class="gallery" href="{{ image.src | product_img_url: 'original' }}" rel="gallery">
-          <img src="{{ image.src | product_img_url: 'compact' }}" alt="{{ image.alt | escape }}" />
-        </a>
-      </li>
-      {% endfor %}
-    </ul>
-    {% endif %}
-    
-  {% endif %}
-
-  </div><!-- #product-photos -->
 
 </div>
 

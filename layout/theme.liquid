@@ -44,12 +44,14 @@
 
   {{ 'option_selection.js' | shopify_asset_url | script_tag }}
 
-<!--[if lt IE 9]>
-  {{ '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js' | script_tag }}
-<![endif]-->
-<!--[if gte IE 9]><!-->
-  {{ '//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js' | script_tag }}
-<!--[endif]-->
+  <!--[if lt IE 9]>
+    {{ '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js' | script_tag }}
+  <![endif]-->
+  <!--[if gte IE 9]><!-->
+    {{ '//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js' | script_tag }}
+  <!--[endif]-->
+
+  <link rel="shortcut icon" href="{{ 'favicon.ico' | asset_url }}" type="image/x-icon" />
 
 </head>
 
@@ -64,11 +66,6 @@
       to show and hide the placeholder text.
       Have a look in assets/shop.js.liquid to see sample JavaScript for this.
       {% endcomment %}
-      
-      <form action="/search" method="get" class="search-form" role="search">
-        <input name="q" type="text" id="search-field" placeholder="Search store..." class="hint" />
-        <input type="submit" id="search-submit" value="Search" />
-      </form>
       
       {% if shop.customer_accounts_enabled %}
       <p class="customer-links">
@@ -88,11 +85,6 @@
       Paypal Express Checkout and/or Google Checkout have special checkout buttons on the /cart page. Also,
       special instructions for the seller are entered on the /cart page.
       {% endcomment %}
-      
-      <p class="checkout-link">
-        <a href="/cart">{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})</a>  · 
-        <a href="/cart">Check out</a>
-      </p>
       
       {% comment %}
       It would be nice if the logo was a shop setting, rather than a theme setting.
@@ -200,7 +192,8 @@
     
   </div><!-- end of #container -->
   
-  {{ 'shop.js'  | asset_url | script_tag }}
+  {{ 'shop.js' | asset_url | script_tag }}
+  {{ 'tobe-shop.js' | asset_url | script_tag }}
 
 </body>
 </html>

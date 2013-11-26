@@ -2,7 +2,7 @@
   "current": "Slate",
   "presets": {
     "Slate": {
-      "use_logo": false,
+      "use_logo": true,
       "customer_layout": "theme"
     }
   }

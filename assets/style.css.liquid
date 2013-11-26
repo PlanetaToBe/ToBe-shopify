@@ -1,25 +1,248 @@
 /*! normalize.css v2.1.3 | MIT License | git.io/normalize */
 article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}audio,canvas,video{display:inline-block}audio:not([controls]){display:none;height:0}[hidden],template{display:none}html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}a{background:0 0}a:focus{outline:thin dotted}a:active,a:hover{outline:0}h1{font-size:2em;margin:.67em 0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:700}dfn{font-style:italic}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}mark{background:#ff0;color:#000}code,kbd,pre,samp{font-family:monospace,serif;font-size:1em}pre{white-space:pre-wrap}q{quotes:"\201C" "\201D" "\2018" "\2019"}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}img{border:0}svg:not(:root){overflow:hidden}figure{margin:0}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{border:0;padding:0}button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}button,input{line-height:normal}button,select{text-transform:none}button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0}input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}textarea{overflow:auto;vertical-align:top}table{border-collapse:collapse;border-spacing:0}
 
+@font-face {
+  font-family: KievitWeb;
+  src: url({{ 'KievitWeb-Thin.eot' | asset_url }});
+  src: url({{ 'KievitWeb-Thin.woff' | asset_url }}) format("woff");
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: KievitWeb;
+  src: url({{ 'KievitWeb.eot' | asset_url }});
+  src: url({{ 'KievitWeb.woff' | asset_url }}) format("woff");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: KievitWeb;
+  src: url({{ 'KievitWeb-Bold.eot' | asset_url }});
+  src: url({{ 'KievitWeb-Bold.woff' | asset_url }}) format("woff");
+  font-weight: bold;
+}
+
+body {
+  font-family:'KievitWeb', Arial, sans-serif;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+a:hover {
+  color: #1266fb;
+}
+a.active {
+  color: black;
+  cursor: default;
+}
+
+input[type=submit],
+button {
+  position: relative;
+  font-size: 15px;
+  line-height: 20px;
+  line-height: 1.35em;
+  font-weight: bold;
+  border-radius: 2px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid #222;
+  color: rgba(0,0,0,0.78);
+  display: inline-block;
+  padding-top: 9px;
+  padding-bottom: 6px;
+  padding-left: 13px;
+  padding-right: 13px;
+  text-decoration: none;
+  vertical-align: middle;
+  background: transparent;
+}
+input[type=submit]:hover,
+button:hover {
+  color: #1266fb;
+  border-color: #1266fb;
+}
+
+#logo {
+  position: fixed;
+  z-index: 1;
+  left: 30px;
+  top: 30px;
+}
+#logo img {
+  height: 130px;
+}
+
+nav {
+  text-align: right;
+}
+
 /* Hiding placeholder text on focus in webkit, thanks to http://www.kolodvor.net/2012/03/23/webkit-placeholder-attribute-behavior */
 input:focus::-webkit-input-placeholder, textarea:focus::-webkit-input-placeholder { color:transparent; }
 
 /* UGLY STYLE: Styling active links in navigation, only for demo purposes */
-.active > a:after { content: 'active'; display: inline; background-color: green; color: white; font-size:75%; padding:2px; margin-left:2px; text-decoration:none; }
+/* .active > a:after { content: 'active'; display: inline; background-color: green; color: white; font-size:75%; padding:2px; margin-left:2px; text-decoration:none; } */
+.active a {
+  /* color: #1266fb; */
+}
 
 /* Contain floats: nicolasgallagher.com/micro-clearfix-hack/ */ 
 .clearfix:before, .clearfix:after { content: ""; display: table; }
 .clearfix:after { clear: both; }
 .clearfix { zoom: 1; }
 
-/* Products grid, collections grid: we are using lists, not tables */
-ul.grid li {
-  background-color: #b3f9eb;
-  float: left;
+input[type=number] {
+  width: 60px;
+}
+
+ul {
   list-style-type: none;
 }
-ul.grid li { margin: 0 20px 20px 0; }
-ul.grid li.last-in-row { margin-right: 0; }
+
+ul.nav li {
+  display: inline-block;
+  margin-left: 10px;
+  text-align: left;
+}
+ul.sub-nav {
+  display: none;
+  margin-top: 5px;
+  position: absolute;
+  z-index: 1;
+  padding-left: 0px;
+  background-color: white;
+}
+ul.sub-nav li {
+  margin-left: 5px;
+  display: block;
+}
+
+/* Products grid, collections grid: we are using lists, not tables */
+.template-index ul.grid>li {
+  /* Yellow */
+  /* background-color: #fafbac; */
+  float: left;
+  padding: 20px;
+  margin: 0 30px 20px 0;
+  position: relative;
+  width: 353px;
+  height: 324px;
+}
+.template-index ul.grid>li.last-in-row { margin-right: 0; }
+
+.template-product ul.grid>li {
+  display: inline;
+}
+
+#product-variants label {
+  margin-right: 5px;
+}
+
+/* Collection handle styles */
+.nov-2013 {
+  /* Green */
+  background-color: #b3f9eb;
+}
+.dec-2013 {
+  /* Blue */
+  background-color: #bee6fb;
+}
+
+.prod-image-wrap {
+  text-align: center;
+}
+.prod-image-wrap img {
+  height: 300px;
+  max-height: 300px;
+  max-width: 353px;
+}
+
+ul.collections {
+  transform:rotate(-90deg);
+  -ms-transform:rotate(-90deg);
+  -webkit-transform:rotate(-90deg);
+  width: 300px;
+  position: absolute;
+  left: -158px;
+  top: 140px;
+  text-align: right;
+  font-weight: bold;
+  padding-left: 0px;
+}
+
+ul.collections li {
+  display: inline;
+  margin-right: 5px;
+}
+
+ul.collections li.collection-frontpage {
+  display: none !important;
+}
+
+.prod-caption {
+  height: 15px;
+}
+.prod-caption .prod-vendor {
+  font-weight: bold;
+  position: absolute;
+  left: 5px;
+  bottom: 20px;
+}
+.prod-caption .prod-desc {
+  font-weight: bold;
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+}
+.prod-caption .prod-price {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+}
+
+.prod-caption .prod-price,
+.product-price {
+  font-weight: bold;
+}
+
+#product-photos img {
+  max-height: 600px;
+}
+
+#product-photos,
+#product-details {
+  text-align: center;
+}
+
+#product-photo-thumbs img {
+  max-height: 200px;
+  max-width: 160px;
+}
+
+#product-details div {
+  margin: 10px;
+}
+
+.template-cart #main {
+  text-align: center;
+}
+.template-cart #main table {
+  margin: 0 auto;
+}
+.template-cart tr {
+  border-bottom: solid 10px white;
+}
+.template-cart tr:last-child {
+  border-bottom: none;
+}
+.template-cart tr td {
+  padding: 10px;
+}
 
 /* Utility classes: Hidden, float lef, float right, etc. */
 
@@ -29,22 +252,31 @@ ul.grid li.last-in-row { margin-right: 0; }
 
 /* Styling #site-title as it uses h1 on home page and span on other pages. */
 
-#site-title {
-font-size: 2em;
-font-weight: bold;
-line-height: 1.5;
-margin: 0;
-padding: 0;
-}
-
 .container {
 width: 960px;
 padding: 20px;
 margin: 0 auto;
 }
 
-/* Override to globally-hosted search.css on the /search page */
-
-#searchresults input {
-width: auto;
+a.icon {
+  font-size: 12.5px;
+  line-height: 21px;
+}
+a.icon span {
+  display: inline-block;
+  width: 1.6em;
+  height: 1.6em;
+  background-size: 1.6em;
+  background-image: url({{ 'spritesheet.svg' | asset_url }});
+  background-repeat: no-repeat;
+  vertical-align:middle;
+}
+a.icon.active span,
+a.icon:hover span {
+  background-image: url({{ 'spritesheet_blue.svg' | asset_url }});
+}
+/* iconSize: 1.6em */
+a.icon.close span {
+  /* &.close {  background-position: 0 -22*$iconSize */
+  background-position: 0 -35.2em;
 }
