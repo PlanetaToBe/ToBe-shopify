@@ -72,18 +72,18 @@ button:hover {
   position: fixed;
   z-index: 1;
   left: 10px;
-  top: 50px;
+  top: 10px;
 }
 #logo img {
-  height: 130px;
+  height: 90px;
 }
 
 .template-collection #main>h1,
 nav {
   font-weight: bold;
-  font-size: 2.5em;
-  margin-left: 60px;
-  margin-top: 0;
+  font-size: 1.5em;
+  text-align: center;
+  margin-top: 5px;
   margin-bottom: 0;
 }
 
@@ -115,14 +115,14 @@ ul {
 }
 
 ul.grid {
-  width: 846px;
+  width: 320px;
   margin: 0 auto;
 }
 
 ul.nav {
   position: fixed;
-  top: 200px;
-  left: 35px;
+  top: 90px;
+  left: 20px;
   font-size: 1.25em;
   z-index: 1;
   background-color: white;
@@ -139,17 +139,20 @@ ul.sub-nav {
 ul.sub-nav li {
 }
 
+.template-index ul.grid {
+  padding: 0;
+}
+
 /* Products grid, collections grid: we are using lists, not tables */
 .template-collection ul.grid>li,
 .template-index ul.grid>li {
   /* Yellow */
   /* background-color: #fafbac; */
-  float: left;
   padding: 20px;
-  margin: 0 30px 20px 0;
+  margin: 10px auto;
   position: relative;
-  width: 353px;
-  height: 324px;
+  width: 240px;
+  height: 270px;
   border-bottom: 1px solid #ddd;
 }
 /*.template-index ul.grid>li.last-in-row { margin-right: 0; }*/
@@ -176,9 +179,8 @@ ul.sub-nav li {
   text-align: center;
 }
 .prod-image-wrap img {
-  height: 300px;
-  max-height: 300px;
-  max-width: 353px;
+  max-height: 250px;
+  max-width: 250px;
 }
 
 ul.collections {
@@ -225,7 +227,7 @@ ul.collections li.collection-frontpage {
 }
 
 #product-photos img {
-  max-height: 600px;
+  max-width: 240px;
 }
 
 #product-photos,
@@ -255,7 +257,6 @@ ul.collections li.collection-frontpage {
   border-bottom: none;
 }
 .template-cart tr td {
-  padding: 10px;
 }
 
 /* Utility classes: Hidden, float lef, float right, etc. */
@@ -267,9 +268,8 @@ ul.collections li.collection-frontpage {
 /* Styling #site-title as it uses h1 on home page and span on other pages. */
 
 .container {
-width: 960px;
-padding: 20px;
-margin: 0 auto;
+  width: 320px;
+  margin: 0 auto;
 }
 
 a.icon {
