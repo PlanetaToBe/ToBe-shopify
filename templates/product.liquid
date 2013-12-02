@@ -51,6 +51,10 @@
         {% assign vendor_url = product.vendor | url_for_vendor %}
       {% endif %}
       
+      <div class="prod-desc">
+        {{ product.description }}
+      </div>
+
       <div id="product-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
         <meta itemprop="priceCurrency" content="{{ shop.currency }}" />
         {% if product.available %}
