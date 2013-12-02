@@ -79,7 +79,6 @@ button:hover {
 }
 
 nav {
-  text-align: right;
 }
 
 /* Hiding placeholder text on focus in webkit, thanks to http://www.kolodvor.net/2012/03/23/webkit-placeholder-attribute-behavior */
@@ -104,9 +103,13 @@ ul {
   list-style-type: none;
 }
 
+ul.nav {
+  display: inline;
+  padding-left: 0;
+}
 ul.nav li {
   display: inline-block;
-  margin-left: 10px;
+  margin-left: 0;
   text-align: left;
 }
 ul.sub-nav {
@@ -146,11 +149,11 @@ ul.sub-nav li {
 /* Collection handle styles */
 .nov-2013 {
   /* Green */
-  background-color: #b3f9eb;
+  /*background-color: #b3f9eb;*/
 }
 .dec-2013 {
   /* Blue */
-  background-color: #bee6fb;
+  /*background-color: #bee6fb;*/
 }
 
 .prod-image-wrap {
@@ -191,12 +194,6 @@ ul.collections li.collection-frontpage {
   font-weight: bold;
   position: absolute;
   left: 5px;
-  bottom: 20px;
-}
-.prod-caption .prod-type {
-  font-weight: bold;
-  position: absolute;
-  left: 5px;
   bottom: 5px;
 }
 .prod-caption .prod-price {
@@ -207,6 +204,7 @@ ul.collections li.collection-frontpage {
 
 .prod-caption .prod-price,
 .product-price {
+  font-size: 1.25em;
   font-weight: bold;
 }
 

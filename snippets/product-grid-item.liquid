@@ -21,6 +21,8 @@ Here, for the sake of teaching, we will use 2 presentation options:
 {% endif %}
 
 <li class="{{ product-grid-item }}{% unless product.available %} sold-out{% endunless %}{% if on_sale %} on-sale{% endif %}{% if product-grid-item == 'four-per-row' %}{% cycle 'last': '', '', '', ' last-in-row' %}{% elsif product-grid-item == 'three-per-row' %}{% cycle 'last': '', '', ' last-in-row' %}{% endif %} {% for collection in product.collections %} {{collection.handle}} {% endfor %}">
+
+  <!--
   <ul class="collections">
     {% for collection in product.collections %}
       <li class="collection-title collection-{{collection.handle}}">
@@ -28,6 +30,7 @@ Here, for the sake of teaching, we will use 2 presentation options:
       </li>
     {% endfor %}
   </ul>
+  -->
 
   <a href="{{ product.url | within: collection }}">
 
@@ -38,9 +41,6 @@ Here, for the sake of teaching, we will use 2 presentation options:
     <div class="prod-caption">
       <div class="prod-vendor">
         {{ product.vendor }}
-      </div>
-      <div class="prod-type">
-        {{ product.type }}
       </div>
       <div class="prod-price">
         {% if product.price_varies %}From{% endif %}
