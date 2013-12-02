@@ -78,9 +78,17 @@ button:hover {
   height: 130px;
 }
 
+.template-collection #main>h1,
 nav {
+  font-weight: bold;
   font-size: 2.5em;
-  margin-left: 40px;
+  margin-left: 60px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.template-collection nav {
+  display: none;
 }
 
 /* Hiding placeholder text on focus in webkit, thanks to http://www.kolodvor.net/2012/03/23/webkit-placeholder-attribute-behavior */
@@ -103,12 +111,18 @@ input[type=number] {
 
 ul {
   list-style-type: none;
+  padding: 0;
+}
+
+ul.grid {
+  width: 846px;
+  margin: 0 auto;
 }
 
 ul.nav {
   display: inline;
-  padding-left: 0;
 }
+
 ul.nav li {
   display: inline-block;
   margin-left: 0;
@@ -141,10 +155,6 @@ ul.sub-nav li {
   border-bottom: 1px solid #ddd;
 }
 /*.template-index ul.grid>li.last-in-row { margin-right: 0; }*/
-
-.template-collection #main>h1 {
-  margin-left: 50px;
-}
 
 .template-product ul.grid>li {
   display: inline;
