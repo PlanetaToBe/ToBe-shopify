@@ -79,6 +79,8 @@ button:hover {
 }
 
 nav {
+  font-size: 2.5em;
+  margin-left: 40px;
 }
 
 /* Hiding placeholder text on focus in webkit, thanks to http://www.kolodvor.net/2012/03/23/webkit-placeholder-attribute-behavior */
@@ -126,6 +128,7 @@ ul.sub-nav li {
 }
 
 /* Products grid, collections grid: we are using lists, not tables */
+.template-collection ul.grid>li,
 .template-index ul.grid>li {
   /* Yellow */
   /* background-color: #fafbac; */
@@ -135,8 +138,13 @@ ul.sub-nav li {
   position: relative;
   width: 353px;
   height: 324px;
+  border-bottom: 1px solid #ddd;
 }
-.template-index ul.grid>li.last-in-row { margin-right: 0; }
+/*.template-index ul.grid>li.last-in-row { margin-right: 0; }*/
+
+.template-collection #main>h1 {
+  margin-left: 50px;
+}
 
 .template-product ul.grid>li {
   display: inline;
