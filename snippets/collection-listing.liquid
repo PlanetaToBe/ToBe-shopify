@@ -26,7 +26,7 @@ Merchants often create an 'all' collection to control their Catalog page at /col
 {% endfor %}
 </ul>
 {% else %}
-{% paginate collections by 6 %}
+{% paginate collections by 50 %}
 <ul class="grid clearfix">
 {% for collection in collections %}
   {% include 'collection-grid-item' with 'three-per-row' %}
