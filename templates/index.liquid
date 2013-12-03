@@ -16,14 +16,10 @@ Example: the h2 element should have the same size and color in:
   {{ page.content }}
 </div>
 
-{% comment %}
 {% assign collection = collections.frontpage %}
-{% endcomment %}
 
 <ul class="grid clearfix">
-  {% for collection in collections %}
-    {% for product in collection.products %}
-      {% include 'product-grid-item' with 'two-per-row' %}
-    {% endfor %}
-  {% endfor %}
+{% for product in collection.products %}
+  {% include 'product-grid-item' with 'two-per-row' %}
+{% endfor %}
 </ul>
