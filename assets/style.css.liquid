@@ -86,9 +86,6 @@ nav {
   margin-top: 0;
   margin-bottom: 0;
 }
-nav .nav-item>a {
-  color: #1266fb;
-}
 
 .template-collection nav {
   display: none;
@@ -123,25 +120,21 @@ ul.grid {
 }
 
 ul.nav {
-  display: inline;
+  position: fixed;
+  top: 200px;
+  left: 35px;
+  font-size: 1.25em;
 }
 
 ul.nav li {
-  display: inline-block;
-  margin-left: 0;
-  text-align: left;
 }
-ul.sub-nav {
+ul.nav li.nav-item>a {
   display: none;
-  margin-top: 5px;
-  position: absolute;
-  z-index: 1;
-  padding-left: 0px;
-  background-color: white;
+}
+
+ul.sub-nav {
 }
 ul.sub-nav li {
-  margin-left: 5px;
-  display: block;
 }
 
 /* Products grid, collections grid: we are using lists, not tables */
