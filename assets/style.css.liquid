@@ -40,8 +40,23 @@ a.active {
   cursor: default;
 }
 
+p.light {
+  font-size:16px;
+  color: #666;
+  padding:0;
+}
+
+p.about {
+  text-align:center;
+  margin:0;
+  position:absolute;
+  top: 0px;
+  right: 120px;
+}
+
 input[type=submit],
-button {
+button,
+a.button {
   position: relative;
   font-size: 15px;
   line-height: 20px;
@@ -63,7 +78,8 @@ button {
   background: transparent;
 }
 input[type=submit]:hover,
-button:hover {
+button:hover,
+a.button:hover {
   color: #1266fb;
   border-color: #1266fb;
 }
@@ -71,18 +87,18 @@ button:hover {
 #logo {
   position: fixed;
   z-index: 1;
-  left: 10px;
-  top: 50px;
+  left: 22px;
+  top: 18px;
 }
 #logo img {
-  height: 130px;
+  height: 100px;
 }
 
-.template-collection #main>h1,
+#main>h1,
 nav {
   font-weight: bold;
   font-size: 2.5em;
-  margin-left: 60px;
+  margin-left: 20px;
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -100,7 +116,7 @@ input:focus::-webkit-input-placeholder, textarea:focus::-webkit-input-placeholde
   /* color: #1266fb; */
 }
 
-/* Contain floats: nicolasgallagher.com/micro-clearfix-hack/ */ 
+/* Contain floats: nicolasgallagher.com/micro-clearfix-hack/ */
 .clearfix:before, .clearfix:after { content: ""; display: table; }
 .clearfix:after { clear: both; }
 .clearfix { zoom: 1; }
@@ -116,12 +132,12 @@ ul {
 
 ul.grid {
   width: 846px;
-  margin: 0 auto;
+  margin: 10px auto 0;
 }
 
 ul.nav {
   position: fixed;
-  top: 200px;
+  top: 150px;
   left: 35px;
   font-size: 1.25em;
   z-index: 1;
@@ -224,6 +240,10 @@ ul.collections li.collection-frontpage {
   font-weight: bold;
 }
 
+#product-photos {
+  padding-top: 60px;
+}
+
 #product-photos img {
   max-height: 600px;
 }
@@ -240,6 +260,10 @@ ul.collections li.collection-frontpage {
 
 #product-details div {
   margin: 10px;
+}
+
+#product-details #product-add {
+  margin-top: 30px;
 }
 
 .template-cart #main {
@@ -268,8 +292,13 @@ ul.collections li.collection-frontpage {
 
 .container {
 width: 960px;
-padding: 20px;
+padding: 40px 0;
 margin: 0 auto;
+}
+
+#main {
+  position:relative;
+  padding-left:110px;
 }
 
 a.icon {

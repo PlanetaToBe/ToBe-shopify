@@ -1,18 +1,18 @@
 <div itemscope itemtype="http://schema.org/Product">
-  
+
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}" />
   <meta itemprop="image" content="{{ product.featured_image.src | product_img_url: 'grande' }}" />
-  
+
   <div id="product-photos">
-  
+
   {% if product.images.size == 0 %}
-  
+
     <div id="product-photo-container">
       <img src="{{ '' | product_img_url: 'grande' }}" alt="" />
     </div>
-    
+
   {% else %}
-    
+
     <div id="product-photo-container" class="{% for collection in product.collections %} {{collection.handle}} {% endfor %}">
       <a class="gallery" href="{{ product.featured_image.src | product_img_url: 'original' }}" rel="gallery">
         <img src="{{ product.featured_image.src | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}" />
@@ -30,15 +30,15 @@
       {% endfor %}
     </ul>
     {% endif %}
-    
+
   {% endif %}
 
   </div><!-- #product-photos -->
 
   <form action="/cart/add" method="post" enctype="multipart/form-data">
-    
+
     <div id="product-details">
-      
+
       {% assign product_vendor_handle = product.vendor | handle %}
       {% comment %}
       Do we have a collection that has the same name as our product vendor name?
@@ -50,7 +50,7 @@
       {% else %}
         {% assign vendor_url = product.vendor | url_for_vendor %}
       {% endif %}
-      
+
       <div class="prod-desc">
         {{ product.description }}
       </div>
@@ -71,11 +71,11 @@
           {% endif %}
         </p>
       </div>
-      
+
       {% assign hide_default_title = false %}
       {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
         {% assign hide_default_title = true %}
-      {% endif %}       
+      {% endif %}
 
       <div id="product-variants" class="{% if hide_default_title %} hidden{% endif %}">
        <select id="product-select" name="id" class="hidden">
@@ -83,35 +83,39 @@
          <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
        {% endfor %}
        </select>
-      </div>        
-             
+      </div>
+
       <div id="backorder" class="hidden">
         <p>{{ '%s is back-ordered. We will ship it separately in 10 to 15 days.' | replace: '%s', '<span id="selected-variant"></span>' }}</p>
       </div>
-        
+
       <div id="product-add">
         <input type="submit" name="add" id="add" value="Add to cart">
+
+        {% if product.metafields.tobe.url %}
+          <a class='button' target='_blank' href='{{product.metafields.tobe.url}}'>Customize on to.be</a>
+        {% endif %}
       </div>
 
     </div><!-- #product-details -->
 
   </form>
-  
+
 
 </div>
 
 <script>
 jQuery(function($) {
-  
+
   var selectCallback = function(variant, selector) {
 
     if (variant) {
-      
+
       if (variant.available) {
-        
+
         // Selected a valid variant that is available.
         $('#add').removeClass('disabled').removeAttr('disabled').val('Add to Cart').fadeTo(200,1);
-      
+
         // If item is backordered yet can still be ordered, we'll show special message.
         if (variant.inventory_management && variant.inventory_quantity <= 0) {
           $('#selected-variant').html({{ product.title | json }}{% unless hide_default_title %} + ' - ' + variant.title{% endunless %});
@@ -119,19 +123,19 @@ jQuery(function($) {
         } else {
           $('#backorder').addClass("hidden");
         }
-        
+
       } else {
         // Variant is sold out.
         $('#backorder').addClass('hidden');
-        $('#add').val('Sold Out').addClass('disabled').attr('disabled', 'disabled').fadeTo(200,0.5);        
+        $('#add').val('Sold Out').addClass('disabled').attr('disabled', 'disabled').fadeTo(200,0.5);
       }
-      
+
       // Whether the variant is in stock or not, we can update the price and compare at price.
       if ( variant.compare_at_price > variant.price ) {
         $('#product-price').html('<span class="product-price on-sale">'+ Shopify.formatMoney(variant.price, "{{ shop.money_format }}") +'</span>'+'&nbsp;<s class="product-compare-price">'+Shopify.formatMoney(variant.compare_at_price, "{{ shop.money_format }}")+ '</s>');
       } else {
         $('#product-price').html('<span class="product-price">'+ Shopify.formatMoney(variant.price, "{{ shop.money_format }}") + '</span>' );
-      }        
+      }
 
     } else {
       // variant doesn't exist.
@@ -142,12 +146,12 @@ jQuery(function($) {
   };
 
   new Shopify.OptionSelectors('product-select', { product: {{ product | json }}, onVariantSelected: selectCallback });
-  
+
   // Add label if only one product option and it isn't 'Title'.
   {% if product.options.size == 1 and product.options.first != 'Title' %}
     $('.selector-wrapper:eq(0)').prepend('<label>{{ product.options.first }}</label>');
   {% endif %}
-  
+
   // Auto-select first available variant on page load.
   {% assign found_one_in_stock = false %}
   {% for variant in product.variants %}
