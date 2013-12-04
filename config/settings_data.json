@@ -1,5 +1,8 @@
 {
-  "current": "Slate",
+  "current": {
+    "customer_layout": "theme",
+    "use_logo": true
+  },
   "presets": {
     "Slate": {
       "use_logo": true,
