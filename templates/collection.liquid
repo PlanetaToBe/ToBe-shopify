@@ -23,7 +23,7 @@ Example: the h2 element should have the same size and color in:
 {% comment %}
 Listing all tags within the current collection.
 Shopify uses product tags to manage subcategories inside collections.
-See 'How do I create subcategories of products?' at 
+See 'How do I create subcategories of products?' at
 http://support.shopify.com/customer/portal/articles/75425 for details.
 {% endcomment %}
 {% if collection.all_tags.size > 0 %}
@@ -45,7 +45,7 @@ so in comparisons we need to escape type and vendor.
     {% elsif vendor_escaped == collection.title %}
     <a href="{{ collection.products.first.vendor | url_for_vendor }}">All</a>
     {% endif %}
-  </li> 
+  </li>
   {% for tag in collection.all_tags %}
   {% if current_tags contains tag %}
   <li class="active">
@@ -56,14 +56,14 @@ so in comparisons we need to escape type and vendor.
     {{ tag | link_to_tag: tag }}
   </li>
   {% endif %}
-  {% endfor %}  
+  {% endfor %}
 </ul>
 {% endif %}
 
 {% if collection.description.size > 0 %}
-<div class="rte">
+<p class="collection-description">
   {{ collection.description }}
-</div>
+</p>
 {% endif %}
 
 <ul class="grid clearfix">
